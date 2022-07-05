@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
 
-const fs = require('fs');
-const generatePage = require('./src/page-template.js');
-const { writeFile, copyFile } = require('fs/promises');
+const generatePage = require('./src/page-template');
+const { writeFile, copyFile } = require('./utils/generate-site');
 
 
 const promptUser = () => {
@@ -43,13 +42,7 @@ const promptUser = () => {
             type: 'input',
             name: 'about',
             message: 'Provide some information about yourself:',
-            when: ({ confirmAbout }) => {
-                if (confirmAbout) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+            when: ({ confirmAbout }) => confirmAbout
         }
     ]);
 };
@@ -74,7 +67,7 @@ const promptProject = portfolioData => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log('Please enter the name of this project!');
+                    console.log('You need to enter a name for this project!');
                     return false;
                 }
             }
@@ -82,7 +75,7 @@ const promptProject = portfolioData => {
         {
             type: 'input',
             name: 'description',
-            message: 'Provide a description of the project (Required)',
+            message: 'Provide a description of the project. (Required)',
             validate: descriptionInput => {
                 if (descriptionInput) {
                     return true;
@@ -106,7 +99,7 @@ const promptProject = portfolioData => {
                 if (linkInput) {
                     return true;
                 } else {
-                    console.log('Please enter the URL for this project!');
+                    console.log('You need to enter the GitHub link for this project!');
                     return false;
                 }
             }

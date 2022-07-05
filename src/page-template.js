@@ -12,14 +12,15 @@ const generateAbout = aboutText => {
     `;
 };
 
+// create the projects section
 const generateProjects = projectsArr => {
     return `
         <section class="my-3" id="portfolio">
             <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
             <div class="flex-row justify-space-between">
                 ${projectsArr
-                .filter(({ feature }) => feature)
-                .map(({ name, description, languages, link }) => {
+            .filter(({ feature }) => feature)
+            .map(({ name, description, languages, link }) => {
                 return `
                     <div class="col-12 mb-2 bg-dark text-light p-3">
                       <h3 class="portfolio-item-title text-light">${name}</h3>
@@ -31,12 +32,12 @@ const generateProjects = projectsArr => {
                         <a href="${link}" target="_blank" class="btn"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
                     </div>
                 `;
-                })
-                .join('')}
+            })
+            .join('')}
 
                 ${projectsArr
-                .filter(({ feature }) => !feature)
-                .map(({ name, description, languages, link }) => {
+            .filter(({ feature }) => !feature)
+            .map(({ name, description, languages, link }) => {
                 return `
                     <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
                         <h3 class="portfolio-item-title text-light">${name}</h3>
@@ -48,13 +49,14 @@ const generateProjects = projectsArr => {
                         <a href="${link}" target="_blank" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
                     </div>
                 `;
-                })
-                .join('')}
+            })
+            .join('')}
             </div>
         </section>
     `;
 };
 
+// export function to generate entire page
 module.exports = templateData => {
     // destructure projects and about data from templateData based on their property key names
     const { projects, about, ...header } = templateData;

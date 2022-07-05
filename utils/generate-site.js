@@ -27,8 +27,10 @@ const copyFile = () => {
             }
             resolve({
                 ok: true,
-                message: 'Style sheet copied successfully!'
+                message: 'Stylesheet created!'
             });
         });
     });
 };
+
+module.exports = { writeFile, copyFile };
